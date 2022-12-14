@@ -1,0 +1,16 @@
+@import 'mixins/index.scss';
+
+/* Form 表单
+------------------------------- */
+.el-form {
+  // 用于修改弹窗时表单内容间隔太大问题，如系统设置的新增菜单弹窗里的表单内容
+  .el-form-item:last-of-type {
+    margin-bottom: 18px !important;
+  }
+}
+
+/* ColorPicker 颜色选择器
+------------------------------- */
+.el-color-predefine__color-selector {
+  border: 1px solid var(--el-border-color);
+}
