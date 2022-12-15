@@ -4,8 +4,7 @@
       <el-form :model="form" ref="formRef" size="default" label-width="80px">
         <el-row :gutter="35">
           <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-            <el-form-item label="" prop="" :rules="[]">
-            </el-form-item>
+            <el-form-item label="" prop="" :rules="[]"> </el-form-item>
           </el-col>
         </el-row>
       </el-form>
@@ -71,7 +70,7 @@ const onSure = () => {
 
     state.sureLoading = true
     let res = {} as any
-    
+
     if (state.form.id != undefined && state.form.id > 0) {
       res = {} as any
     } else {
@@ -100,5 +99,4 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
