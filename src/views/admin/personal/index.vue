@@ -1,5 +1,5 @@
 <template>
-  <div class="personal layout-pd">
+  <div class="personal layout-pd" v-loading="state.loading">
     <el-row>
       <!-- 个人信息 -->
       <el-col :xs="24" :sm="16">
@@ -12,12 +12,12 @@
             </div>
             <div class="personal-user-right">
               <el-row>
-                <el-col :span="24" class="personal-title mb18">{{ currentTime }}，{{ personalForm.name }}，开心点，少生气，好好爱自己吧！ </el-col>
+                <el-col :span="24" class="personal-title mb18">{{ currentTime }}，{{ personalInfo.name }}，开心点，少生气，好好爱自己吧！ </el-col>
                 <el-col :span="24">
                   <el-row>
                     <el-col v-if="personalForm.nickName" :xs="24" :sm="8" class="personal-item mb6">
                       <div class="personal-item-label">昵称：</div>
-                      <div class="personal-item-value">{{ personalForm.nickName }}</div>
+                      <div class="personal-item-value">{{ personalInfo.nickName }}</div>
                     </el-col>
                     <!-- <el-col :xs="24" :sm="16" class="personal-item mb6">
                       <div class="personal-item-label">身份：</div>
@@ -52,26 +52,30 @@
       <el-col :span="24">
         <el-card shadow="hover" class="mt15 personal-edit" header="更新信息">
           <div class="personal-edit-title">基本信息</div>
-          <el-form ref="formRef" :model="personalForm" size="default" label-width="40px" class="mt35 mb35">
+          <el-form ref="formRef" :model="personalForm" size="default" label-width="60px" class="mt35 mb35">
             <el-row :gutter="35">
-              <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
-                <el-form-item label="姓名" :rules="[{ required: true, message: '请输入姓名', trigger: ['blur', 'change'] }]">
+              <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+                <el-form-item label="姓名" prop="name" :rules="[{ required: true, message: '请输入姓名', trigger: ['blur', 'change'] }]">
                   <el-input v-model="personalForm.name" placeholder="请输入姓名" clearable></el-input>
                 </el-form-item>
               </el-col>
-              <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
+              <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
                 <el-form-item label="昵称">
                   <el-input v-model="personalForm.nickName" placeholder="请输入昵称" clearable></el-input>
                 </el-form-item>
               </el-col>
               <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                 <el-form-item>
-                  <el-button type="primary" @click="onUpdateBasic">
-                    <el-icon>
-                      <ele-Position />
-                    </el-icon>
-                    更新个人信息
-                  </el-button>
+                  <el-popconfirm title="确定要更新个人信息吗？" hide-icon width="180" @confirm="onUpdateBasic">
+                    <template #reference>
+                      <el-button :loading="state.updateLoading" type="primary">
+                        <el-icon>
+                          <ele-Position />
+                        </el-icon>
+                        更新个人信息
+                      </el-button>
+                    </template>
+                  </el-popconfirm>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -120,6 +124,9 @@
 import { reactive, computed, onMounted, toRefs, ref } from 'vue'
 import { formatAxis } from '/@/utils/formatTime'
 import { User as UserApi } from '/@/api/admin/User'
+import { UserGetBasicOutput } from '/@/api/admin/data-contracts'
+import { useUserInfo } from '/@/stores/userInfo'
+import pinia from '/@/stores/index'
 
 // 定义变量内容
 const state = reactive({
@@ -129,7 +136,9 @@ const state = reactive({
   personalInfo: {
     mobile: '',
     email: '',
-  },
+    name: '',
+    nickName: '',
+  } as UserGetBasicOutput,
   personalForm: {
     name: '',
     nickName: '',
@@ -149,35 +158,34 @@ onMounted(() => {
   initData()
 })
 
+// 初始化数据
 const initData = async () => {
   state.loading = true
   const res = await new UserApi().getBasic()
   if (res?.success) {
     state.personalForm.name = res.data?.name as string
     state.personalForm.nickName = res.data?.nickName as string
-    state.personalInfo.mobile = res.data?.mobile as string
-    state.personalInfo.email = res.data?.email as string
+    state.personalInfo = res.data as UserGetBasicOutput
   }
   state.loading = false
 }
 
+// 更新个人信息
 const onUpdateBasic = async () => {
   formRef.value.validate(async (valid: boolean) => {
     if (!valid) return
 
     state.updateLoading = true
-    //let res = {} as any
-    // if (state.form.id != undefined && state.form.id > 0) {
-    //   res = await new UserApi().update(state.form, { showSuccessMessage: true })
-    // } else {
-    //   res = await new UserApi().add(state.form, { showSuccessMessage: true })
-    // }
+    const res = await new UserApi().updateBasic(state.personalForm, { showSuccessMessage: true })
 
     state.updateLoading = false
 
-    // if (res?.success) {
-
-    // }
+    if (res?.success) {
+      state.personalInfo.nickName = state.personalForm.nickName
+      state.personalInfo.name = state.personalForm.name
+      const storesUserInfo = useUserInfo(pinia)
+      storesUserInfo.setUserName(state.personalForm.nickName || state.personalForm.name)
+    }
   })
 }
 </script>

@@ -127,6 +127,7 @@ export default {
     accessBtn: '重新授權',
   },
   layout: {
+    primary: '主題顏色',
     configTitle: '佈局配寘',
     oneTitle: '全域主題',
     twoTopTitle: '頂欄設定',

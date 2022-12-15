@@ -127,6 +127,7 @@ export default {
     accessBtn: '重新授权',
   },
   layout: {
+    primary: '主题颜色',
     configTitle: '布局配置',
     oneTitle: '全局主题',
     twoTopTitle: '顶栏设置',

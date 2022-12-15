@@ -12,7 +12,7 @@
         <!-- 全局主题 -->
         <el-divider content-position="left">{{ $t('message.layout.oneTitle') }}</el-divider>
         <div class="layout-breadcrumb-seting-bar-flex">
-          <div class="layout-breadcrumb-seting-bar-flex-label">primary</div>
+          <div class="layout-breadcrumb-seting-bar-flex-label">{{ $t('message.layout.primary') }}</div>
           <div class="layout-breadcrumb-seting-bar-flex-value">
             <el-color-picker v-model="getThemeConfig.primary" :predefine="predefinePrimaryColors" size="default" @change="onColorPickerChange">
             </el-color-picker>

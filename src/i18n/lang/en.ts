@@ -127,6 +127,7 @@ export default {
     accessBtn: 'Reauthorization',
   },
   layout: {
+    primary: 'Theme color',
     configTitle: 'Layout configuration',
     oneTitle: 'Global Themes',
     twoTopTitle: 'top bar set up',

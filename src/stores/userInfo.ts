@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
 //import Cookies from 'js-cookie'
-import { Session, Local } from '/@/utils/storage'
+import { Session } from '/@/utils/storage'
 import { Auth as AuthApi } from '/@/api/admin/Auth'
-import { adminTokenKey } from '/@/api/admin/http-client'
+import { clearToken } from '/@/api/admin/http-client'
 
 /**
  * 用户信息
@@ -28,6 +28,12 @@ export const useUserInfo = defineStore('userInfo', {
         this.userInfos = userInfos
       }
     },
+    async setUserName(userName: string) {
+      this.userInfos.userName = userName
+    },
+    async setPhoto(photo: string) {
+      this.userInfos.photo = photo
+    },
     // 模拟接口数据
     // https://gitee.com/lyt-top/vue-next-admin/issues/I5F1HP
     async getApiUserInfo() {
@@ -38,7 +44,7 @@ export const useUserInfo = defineStore('userInfo', {
             if (res?.success) {
               const user = res.data?.user
               const userInfos = {
-                userName: user?.name,
+                userName: user?.nickName || user?.name,
                 photo: user?.avatar ? user?.avatar : '/favicon.ico',
                 time: new Date().getTime(),
                 roles: [],
@@ -46,9 +52,7 @@ export const useUserInfo = defineStore('userInfo', {
               }
               resolve(userInfos)
             } else {
-              Local.remove(adminTokenKey)
-              Session.remove('token')
-              window.location.reload()
+              clearToken()
             }
           })
           .catch((err) => {
