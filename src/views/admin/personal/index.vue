@@ -52,10 +52,10 @@
       <el-col :span="24">
         <el-card shadow="hover" class="mt15 personal-edit" header="更新信息">
           <div class="personal-edit-title">基本信息</div>
-          <el-form :model="personalForm" size="default" label-width="40px" class="mt35 mb35">
+          <el-form ref="formRef" :model="personalForm" size="default" label-width="40px" class="mt35 mb35">
             <el-row :gutter="35">
               <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" class="mb20">
-                <el-form-item label="姓名">
+                <el-form-item label="姓名" :rules="[{ required: true, message: '请输入姓名', trigger: ['blur', 'change'] }]">
                   <el-input v-model="personalForm.name" placeholder="请输入姓名" clearable></el-input>
                 </el-form-item>
               </el-col>
@@ -66,7 +66,7 @@
               </el-col>
               <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                 <el-form-item>
-                  <el-button type="primary">
+                  <el-button type="primary" @click="onUpdateBasic">
                     <el-icon>
                       <ele-Position />
                     </el-icon>
@@ -92,7 +92,7 @@
             <div class="personal-edit-safe-item">
               <div class="personal-edit-safe-item-left">
                 <div class="personal-edit-safe-item-left-label">密保手机</div>
-                <div class="personal-edit-safe-item-left-value">已绑定手机：{{ personalInfo.phone }}</div>
+                <div class="personal-edit-safe-item-left-value">已绑定手机：{{ personalInfo.mobile }}</div>
               </div>
               <div class="personal-edit-safe-item-right">
                 <el-button text type="primary">立即修改</el-button>
@@ -117,7 +117,7 @@
 </template>
 
 <script setup lang="ts" name="personal">
-import { reactive, computed, onMounted, toRefs } from 'vue'
+import { reactive, computed, onMounted, toRefs, ref } from 'vue'
 import { formatAxis } from '/@/utils/formatTime'
 import { User as UserApi } from '/@/api/admin/User'
 
@@ -127,15 +127,17 @@ const state = reactive({
   newsInfoList: [] as any,
   recommendList: [] as any,
   personalInfo: {
-    phone: '',
+    mobile: '',
     email: '',
   },
   personalForm: {
     name: '',
     nickName: '',
   },
+  updateLoading: false,
 })
 
+const formRef = ref()
 const { personalInfo, personalForm } = toRefs(state)
 
 // 当前时间提示语
@@ -153,10 +155,30 @@ const initData = async () => {
   if (res?.success) {
     state.personalForm.name = res.data?.name as string
     state.personalForm.nickName = res.data?.nickName as string
-    state.personalInfo.phone = res.data?.mobile as string
+    state.personalInfo.mobile = res.data?.mobile as string
     state.personalInfo.email = res.data?.email as string
   }
   state.loading = false
+}
+
+const onUpdateBasic = async () => {
+  formRef.value.validate(async (valid: boolean) => {
+    if (!valid) return
+
+    state.updateLoading = true
+    //let res = {} as any
+    // if (state.form.id != undefined && state.form.id > 0) {
+    //   res = await new UserApi().update(state.form, { showSuccessMessage: true })
+    // } else {
+    //   res = await new UserApi().add(state.form, { showSuccessMessage: true })
+    // }
+
+    state.updateLoading = false
+
+    // if (res?.success) {
+
+    // }
+  })
 }
 </script>
 

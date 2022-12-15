@@ -75,7 +75,9 @@
   },
   "keywords": [
     "vue3",
-    "element-plus"
+    "element-plus",
+    "zhontai",
+    "admin"
   ],
   "repository": {
     "type": "git",
