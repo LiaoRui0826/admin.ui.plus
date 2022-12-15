@@ -6,8 +6,21 @@
         <el-card shadow="hover" header="个人信息">
           <div class="personal-user">
             <div class="personal-user-left">
-              <el-upload class="h100 personal-user-left-upload" action="https://jsonplaceholder.typicode.com/posts/" multiple :limit="1">
-                <img src="https://img2.baidu.com/it/u=1978192862,2048448374&fm=253&fmt=auto&app=138&f=JPEG?w=504&h=500" />
+              <el-upload
+                class="h100 personal-user-left-upload"
+                :action="avatarAction"
+                :headers="avatarHeaders"
+                :data="{ autoUpdate: true }"
+                :show-file-list="false"
+                :before-upload="
+                  () => {
+                    state.avatarLoading = true
+                  }
+                "
+                :on-success="onAvatarSuccess"
+                :on-error="onAvatarError"
+              >
+                <img :src="avatar" />
               </el-upload>
             </div>
             <div class="personal-user-right">
@@ -88,7 +101,7 @@
                 <div class="personal-edit-safe-item-left-value">当前密码强度：强</div>
               </div>
               <div class="personal-edit-safe-item-right">
-                <el-button text type="primary">立即修改</el-button>
+                <el-button text type="primary" @click="onChangePassword">立即修改</el-button>
               </div>
             </div>
           </div>
@@ -117,16 +130,24 @@
         </el-card>
       </el-col>
     </el-row>
+
+    <change-password-form ref="changePasswordFormRef" title="修改密码"></change-password-form>
   </div>
 </template>
 
 <script setup lang="ts" name="personal">
-import { reactive, computed, onMounted, toRefs, ref } from 'vue'
+import { reactive, computed, onMounted, toRefs, ref, getCurrentInstance } from 'vue'
 import { formatAxis } from '/@/utils/formatTime'
 import { User as UserApi } from '/@/api/admin/User'
 import { UserGetBasicOutput } from '/@/api/admin/data-contracts'
 import { useUserInfo } from '/@/stores/userInfo'
 import pinia from '/@/stores/index'
+import { storeToRefs } from 'pinia'
+import { getToken } from '/@/api/admin/http-client'
+import { AxiosResponse } from 'axios'
+import ChangePasswordForm from './components/change-password-form.vue'
+
+const { proxy } = getCurrentInstance() as any
 
 // 定义变量内容
 const state = reactive({
@@ -134,6 +155,7 @@ const state = reactive({
   newsInfoList: [] as any,
   recommendList: [] as any,
   personalInfo: {
+    avatar: '',
     mobile: '',
     email: '',
     name: '',
@@ -143,15 +165,37 @@ const state = reactive({
     name: '',
     nickName: '',
   },
+  avatarLoading: false,
   updateLoading: false,
 })
 
+const changePasswordFormRef = ref()
 const formRef = ref()
 const { personalInfo, personalForm } = toRefs(state)
+const storesUserInfo = useUserInfo(pinia)
+const { userInfos } = storeToRefs(storesUserInfo)
 
 // 当前时间提示语
 const currentTime = computed(() => {
   return formatAxis(new Date())
+})
+
+// 上传头像请求头部
+const avatarHeaders = computed(() => {
+  return { Authorization: 'Bearer ' + getToken() }
+})
+
+// 头像地址
+const avatar = computed(() => {
+  return (
+    (userInfos.value.photo && `${import.meta.env.VITE_API_URL}upload/admin/avatar/${userInfos.value.photo}`) ||
+    'https://img2.baidu.com/it/u=1978192862,2048448374&fm=253&fmt=auto&app=138&f=JPEG?w=504&h=500'
+  )
+})
+
+// 上传头像请求url
+const avatarAction = computed(() => {
+  return import.meta.env.VITE_API_URL + 'api/admin/user/avatar-upload'
 })
 
 onMounted(() => {
@@ -170,6 +214,30 @@ const initData = async () => {
   state.loading = false
 }
 
+// 上传头像成功
+const onAvatarSuccess = (res: AxiosResponse) => {
+  state.avatarLoading = false
+  if (!res?.success) {
+    if (res.msg) {
+      proxy.$modal.msgError(res.msg)
+    }
+    return
+  }
+  state.personalInfo.avatar = res.data
+  storesUserInfo.setPhoto(res.data)
+}
+
+// 上传头像失败
+const onAvatarError = (err: any) => {
+  state.avatarLoading = false
+  if (err.message) {
+    const res = JSON.parse(err.message) as AxiosResponse
+    if (!res?.success && res.msg) {
+      proxy.$modal.msgError(res.msg)
+    }
+  }
+}
+
 // 更新个人信息
 const onUpdateBasic = async () => {
   formRef.value.validate(async (valid: boolean) => {
@@ -177,16 +245,19 @@ const onUpdateBasic = async () => {
 
     state.updateLoading = true
     const res = await new UserApi().updateBasic(state.personalForm, { showSuccessMessage: true })
-
     state.updateLoading = false
 
     if (res?.success) {
       state.personalInfo.nickName = state.personalForm.nickName
       state.personalInfo.name = state.personalForm.name
-      const storesUserInfo = useUserInfo(pinia)
       storesUserInfo.setUserName(state.personalForm.nickName || state.personalForm.name)
     }
   })
+}
+
+// 修改密码
+const onChangePassword = () => {
+  changePasswordFormRef.value.open()
 }
 </script>
 

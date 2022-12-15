@@ -1,7 +1,7 @@
 const { generateTemplates } = require('swagger-typescript-api')
 const path = require('path')
 
-//导出默认模板
+//导出swagger-typescript-api内置模板
 generateTemplates({
   cleanOutput: false,
   output: path.resolve(__dirname, './templates'),

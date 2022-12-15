@@ -55,7 +55,7 @@
     </div>
     <el-dropdown :show-timeout="70" :hide-timeout="50" @command="onHandleCommandClick">
       <span class="layout-navbars-breadcrumb-user-link">
-        <img :src="userInfos.photo" class="layout-navbars-breadcrumb-user-link-photo mr5" />
+        <img :src="avatar" class="layout-navbars-breadcrumb-user-link-photo mr5" />
         {{ userInfos.userName === '' ? 'common' : userInfos.userName }}
         <el-icon class="el-icon--right">
           <ele-ArrowDown />
@@ -103,6 +103,14 @@ const state = reactive({
   isScreenfull: false,
   disabledI18n: 'zh-cn',
   disabledSize: 'large',
+})
+
+// 头像地址
+const avatar = computed(() => {
+  return (
+    (userInfos.value.photo && `${import.meta.env.VITE_API_URL}upload/admin/avatar/${userInfos.value.photo}`) ||
+    'https://img2.baidu.com/it/u=1978192862,2048448374&fm=253&fmt=auto&app=138&f=JPEG?w=504&h=500'
+  )
 })
 
 // 设置分割样式

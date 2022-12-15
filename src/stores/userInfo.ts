@@ -45,7 +45,7 @@ export const useUserInfo = defineStore('userInfo', {
               const user = res.data?.user
               const userInfos = {
                 userName: user?.nickName || user?.name,
-                photo: user?.avatar ? user?.avatar : '/favicon.ico',
+                photo: user?.avatar ? user?.avatar : '',
                 time: new Date().getTime(),
                 roles: [],
                 authBtnList: res.data?.permissions,
