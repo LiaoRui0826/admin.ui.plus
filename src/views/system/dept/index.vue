@@ -51,7 +51,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="systemDept">
+<script setup lang="ts" name="example/systemDept">
 import { defineAsyncComponent, ref, reactive, onMounted } from 'vue'
 import { ElMessageBox, ElMessage } from 'element-plus'
 

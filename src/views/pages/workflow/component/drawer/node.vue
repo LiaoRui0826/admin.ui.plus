@@ -92,7 +92,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="pagesWorkflowDrawerNode">
+<script setup lang="ts" name="example/pagesWorkflowDrawerNode">
 import { reactive, ref, nextTick } from 'vue'
 import { ElMessage } from 'element-plus'
 import * as echarts from 'echarts'

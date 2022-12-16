@@ -84,7 +84,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="pagesListAdapt">
+<script setup lang="ts" name="example/pagesListAdapt">
 import { reactive } from 'vue'
 
 // 定义变量内容

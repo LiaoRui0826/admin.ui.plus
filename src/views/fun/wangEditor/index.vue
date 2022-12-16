@@ -12,7 +12,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="funWangEditor">
+<script setup lang="ts" name="example/funWangEditor">
 import { defineAsyncComponent, reactive } from 'vue'
 
 // 引入组件

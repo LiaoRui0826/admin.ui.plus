@@ -13,7 +13,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="pagesWorkflowToolHelp">
+<script setup lang="ts" name="example/pagesWorkflowToolHelp">
 import { ref } from 'vue'
 
 // 定义变量内容

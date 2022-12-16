@@ -42,7 +42,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="loginIndex">
+<script setup lang="ts" name="example/loginIndex">
 import { defineAsyncComponent, onMounted, reactive, computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useThemeConfig } from '/@/stores/themeConfig'

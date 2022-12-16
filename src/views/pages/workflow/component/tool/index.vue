@@ -9,7 +9,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="pagesWorkflowTool">
+<script setup lang="ts" name="example/pagesWorkflowTool">
 import { computed, reactive } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useThemeConfig } from '/@/stores/themeConfig'

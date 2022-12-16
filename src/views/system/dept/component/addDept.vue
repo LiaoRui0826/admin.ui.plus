@@ -67,7 +67,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="systemAddDept">
+<script setup lang="ts" name="example/systemAddDept">
 import { reactive, onMounted } from 'vue'
 
 // 定义变量内容

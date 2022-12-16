@@ -30,7 +30,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="pagesTree">
+<script setup lang="ts" name="example/pagesTree">
 import { reactive, onBeforeMount, ref } from 'vue'
 import { ElMessage } from 'element-plus'
 

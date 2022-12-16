@@ -30,7 +30,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="pagesFormRulesTwo">
+<script setup lang="ts" name="example/pagesFormRulesTwo">
 import { reactive } from 'vue'
 
 // 定义变量内容

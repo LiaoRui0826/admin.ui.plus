@@ -59,7 +59,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="systemUser">
+<script setup lang="ts" name="example/systemUser">
 import { defineAsyncComponent, reactive, onMounted, ref } from 'vue'
 import { ElMessageBox, ElMessage } from 'element-plus'
 

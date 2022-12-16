@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="pagesPreview">
+<script setup lang="ts" name="example/pagesPreview">
 import { reactive } from 'vue'
 
 // 定义变量内容

@@ -17,7 +17,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="pagesIocnfont">
+<script setup lang="ts" name="example/pagesIocnfont">
 import { reactive, onMounted } from 'vue'
 import initIconfont from '/@/utils/getStyleSheets'
 

@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="paramsDynamicDetails">
+<script setup lang="ts" name="example/paramsDynamicDetails">
 import { useRoute } from 'vue-router'
 
 // 定义变量内容

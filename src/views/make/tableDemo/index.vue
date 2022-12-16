@@ -14,7 +14,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="makeTableDemo">
+<script setup lang="ts" name="example/makeTableDemo">
 import { defineAsyncComponent, reactive, ref, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 

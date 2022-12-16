@@ -22,7 +22,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="funQrcode">
+<script setup lang="ts" name="example/funQrcode">
 import { onMounted, ref } from 'vue'
 import QRCode from 'qrcodejs2-fixes'
 

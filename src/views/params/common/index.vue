@@ -35,7 +35,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="paramsCommon">
+<script setup lang="ts" name="example/paramsCommon">
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 
@@ -56,7 +56,7 @@ const onGoDetailsClick = () => {
   const params: EmptyObjectType = { id: state.value }
   if (state.tagsViewName) params.tagsViewName = state.tagsViewName
   router.push({
-    path: '/params/common/details',
+    path: '/example/params/common/details',
     query: params,
   })
   state.value = ''

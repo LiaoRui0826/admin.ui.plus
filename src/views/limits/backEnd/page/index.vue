@@ -17,7 +17,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="limitsBackEndEndPage">
+<script setup lang="ts" name="example/limitsBackEndEndPage">
 import { useRouter } from 'vue-router'
 
 // 定义变量内容

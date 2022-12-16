@@ -18,7 +18,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="makeSvgDemo">
+<script setup lang="ts" name="example/makeSvgDemo">
 import { reactive } from 'vue'
 import logoMini from '/@/assets/logo-mini.svg'
 

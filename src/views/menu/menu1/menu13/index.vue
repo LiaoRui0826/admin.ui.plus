@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="menu13">
+<script setup lang="ts" name="example/menu13">
 import { ref, onActivated, onMounted } from 'vue'
 
 // 定义变量内容

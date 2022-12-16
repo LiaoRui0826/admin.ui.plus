@@ -31,7 +31,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="pagesFormRulesOne">
+<script setup lang="ts" name="example/pagesFormRulesOne">
 import { reactive, onMounted } from 'vue'
 
 // 定义父组件传过来的值

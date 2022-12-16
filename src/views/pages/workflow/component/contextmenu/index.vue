@@ -27,7 +27,7 @@
   </transition>
 </template>
 
-<script setup lang="ts" name="pagesWorkflowContextmenu">
+<script setup lang="ts" name="example/pagesWorkflowContextmenu">
 import { computed, reactive, onMounted, onUnmounted, ref } from 'vue'
 
 // 定义父组件传过来的值

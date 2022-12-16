@@ -18,7 +18,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="pagesFormRules">
+<script setup lang="ts" name="example/pagesFormRules">
 import { defineAsyncComponent, reactive, ref } from 'vue'
 import { ElMessage } from 'element-plus'
 

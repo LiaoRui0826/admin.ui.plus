@@ -228,7 +228,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="visualizingLinkDemo2">
+<script setup lang="ts" name="example/visualizingLinkDemo2">
 import { reactive, onMounted, onUnmounted, ref } from 'vue'
 import * as echarts from 'echarts'
 import 'echarts-gl'

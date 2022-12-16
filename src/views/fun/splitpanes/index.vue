@@ -21,7 +21,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="funSplitpanes">
+<script setup lang="ts" name="example/funSplitpanes">
 import { ref } from 'vue'
 import { Splitpanes, Pane } from 'splitpanes'
 import 'splitpanes/dist/splitpanes.css'

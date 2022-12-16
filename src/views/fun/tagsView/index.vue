@@ -62,7 +62,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="funTagsView">
+<script setup lang="ts" name="example/funTagsView">
 import { defineAsyncComponent } from 'vue'
 import { useRoute } from 'vue-router'
 import mittBus from '/@/utils/mitt'

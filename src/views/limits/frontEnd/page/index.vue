@@ -22,7 +22,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="limitsFrontEndPage">
+<script setup lang="ts" name="example/limitsFrontEndPage">
 import { onMounted, ref } from 'vue'
 import Cookies from 'js-cookie'
 import { storeToRefs } from 'pinia'

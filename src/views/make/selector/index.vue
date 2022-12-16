@@ -25,7 +25,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="makeSelector">
+<script setup lang="ts" name="example/makeSelector">
 import { defineAsyncComponent, reactive } from 'vue'
 
 // 引入组件

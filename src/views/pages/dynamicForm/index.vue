@@ -111,7 +111,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="pagesDynamicForm">
+<script setup lang="ts" name="example/pagesDynamicForm">
 import { reactive, ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import type { FormInstance } from 'element-plus'

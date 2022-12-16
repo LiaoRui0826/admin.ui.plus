@@ -28,7 +28,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="funGridLayout">
+<script setup lang="ts" name="example/funGridLayout">
 import { reactive } from 'vue'
 
 // 定义变量内容

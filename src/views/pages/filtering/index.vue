@@ -84,7 +84,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="pagesFiltering">
+<script setup lang="ts" name="example/pagesFiltering">
 import { ref, reactive, onMounted, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { filtering, filterList } from './mock'

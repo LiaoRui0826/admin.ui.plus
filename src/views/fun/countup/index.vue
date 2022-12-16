@@ -36,7 +36,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="funCountup">
+<script setup lang="ts" name="example/funCountup">
 import { reactive, onMounted, nextTick, ref } from 'vue'
 import { CountUp } from 'countup.js'
 

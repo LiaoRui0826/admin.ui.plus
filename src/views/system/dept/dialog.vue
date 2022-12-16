@@ -67,7 +67,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="systemDeptDialog">
+<script setup lang="ts" name="example/systemDeptDialog">
 import { reactive, ref } from 'vue'
 
 // 定义子组件向父组件传值/事件

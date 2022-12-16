@@ -17,7 +17,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="pagesElement">
+<script setup lang="ts" name="example/pagesElement">
 import { reactive, onMounted } from 'vue'
 import initIconfont from '/@/utils/getStyleSheets'
 

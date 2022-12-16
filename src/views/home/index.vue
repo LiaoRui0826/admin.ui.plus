@@ -65,7 +65,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="home">
+<script setup lang="ts" name="example/home">
 import { reactive, onMounted, ref, watch, nextTick, onActivated, markRaw } from 'vue'
 import * as echarts from 'echarts'
 import { storeToRefs } from 'pinia'

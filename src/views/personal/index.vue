@@ -183,7 +183,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="personal">
+<script setup lang="ts" name="example/personal">
 import { reactive, computed } from 'vue'
 import { formatAxis } from '/@/utils/formatTime'
 import { newsInfoList, recommendList } from './mock'

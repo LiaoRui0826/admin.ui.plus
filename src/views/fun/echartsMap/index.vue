@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="funEchartsMap">
+<script setup lang="ts" name="example/funEchartsMap">
 import { reactive, onMounted, ref } from 'vue'
 import * as echarts from 'echarts'
 import 'echarts/extension/bmap/bmap'

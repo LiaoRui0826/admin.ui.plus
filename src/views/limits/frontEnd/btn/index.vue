@@ -334,7 +334,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="limitsFrontEndBtn">
+<script setup lang="ts" name="example/limitsFrontEndBtn">
 import { defineAsyncComponent } from 'vue'
 import { ElMessage } from 'element-plus'
 import { auth, auths, authAll } from '/@/utils/authFunction'

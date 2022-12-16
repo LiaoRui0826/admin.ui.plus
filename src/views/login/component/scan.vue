@@ -8,7 +8,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="loginScan">
+<script setup lang="ts" name="example/loginScan">
 import { ref, onMounted, nextTick } from 'vue'
 import QRCode from 'qrcodejs2-fixes'
 

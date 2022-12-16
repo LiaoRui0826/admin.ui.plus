@@ -23,7 +23,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="funCropper">
+<script setup lang="ts" name="example/funCropper">
 import { defineAsyncComponent, ref, reactive } from 'vue'
 
 // 引入组件

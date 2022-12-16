@@ -9,7 +9,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="pagesWorkflowDrawer">
+<script setup lang="ts" name="example/pagesWorkflowDrawer">
 import { defineAsyncComponent, reactive, ref, nextTick } from 'vue'
 
 // 定义子组件向父组件传值/事件

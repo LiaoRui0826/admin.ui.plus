@@ -37,7 +37,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="pagesDrag">
+<script setup lang="ts" name="example/pagesDrag">
 import { reactive } from 'vue'
 
 // 定义变量内容

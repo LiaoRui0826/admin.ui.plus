@@ -55,7 +55,7 @@
   </el-form>
 </template>
 
-<script setup lang="ts" name="loginAccount">
+<script setup lang="ts" name="example/loginAccount">
 import { reactive, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'

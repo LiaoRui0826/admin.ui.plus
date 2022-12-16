@@ -15,7 +15,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="funPrintJs">
+<script setup lang="ts" name="example/funPrintJs">
 import { ref } from 'vue'
 import printJs from 'print-js'
 

@@ -201,7 +201,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="chartIndex">
+<script setup lang="ts" name="example/chartIndex">
 import { defineAsyncComponent, reactive, onMounted, watch, nextTick, onActivated, ref } from 'vue'
 import * as echarts from 'echarts'
 import 'echarts-wordcloud'

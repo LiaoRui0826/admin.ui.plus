@@ -31,7 +31,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="pagesFormI18n">
+<script setup lang="ts" name="example/pagesFormI18n">
 import { reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
 

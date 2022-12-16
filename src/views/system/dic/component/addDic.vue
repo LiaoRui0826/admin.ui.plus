@@ -63,7 +63,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="systemAddDic">
+<script setup lang="ts" name="example/systemAddDic">
 import { reactive } from 'vue'
 
 // 定义变量内容

@@ -57,7 +57,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="systemEditRole">
+<script setup lang="ts" name="example/systemEditRole">
 import { reactive } from 'vue'
 
 // 定义变量内容

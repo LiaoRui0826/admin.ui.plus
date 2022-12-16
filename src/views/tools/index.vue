@@ -192,7 +192,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="tools">
+<script setup lang="ts" name="example/tools">
 import { reactive } from 'vue'
 import {
   verifyNumberPercentage,

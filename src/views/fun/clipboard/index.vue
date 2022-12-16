@@ -17,7 +17,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="funClipboard">
+<script setup lang="ts" name="example/funClipboard">
 import { reactive } from 'vue'
 import commonFunction from '/@/utils/commonFunction'
 

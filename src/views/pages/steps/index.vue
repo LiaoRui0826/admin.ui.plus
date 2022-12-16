@@ -29,7 +29,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="pagesSteps">
+<script setup lang="ts" name="example/pagesSteps">
 import { ref } from 'vue'
 
 // 定义变量内容

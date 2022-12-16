@@ -35,7 +35,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="paramsDynamic">
+<script setup lang="ts" name="example/paramsDynamic">
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
@@ -54,7 +54,7 @@ const onGoDetailsClick = () => {
   if (!state.value) return ElMessage.warning('路由参数id值为必填')
   // name 值为路由中的 name
   router.push({
-    name: 'paramsDynamicDetails',
+    name: 'example/paramsDynamicDetails',
     params: {
       t: 'vue-next-admin',
       id: state.value,

@@ -67,7 +67,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="pagesWorkflow">
+<script setup lang="ts" name="example/pagesWorkflow">
 import { defineAsyncComponent, reactive, onMounted, onUnmounted, nextTick, ref } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { jsPlumb } from 'jsplumb'

@@ -88,7 +88,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="systemEditUser">
+<script setup lang="ts" name="example/systemEditUser">
 import { reactive, onMounted } from 'vue'
 
 // 定义变量内容

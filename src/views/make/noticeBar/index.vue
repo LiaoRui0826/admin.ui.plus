@@ -47,7 +47,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="makeNoticeBar">
+<script setup lang="ts" name="example/makeNoticeBar">
 import { defineAsyncComponent, reactive } from 'vue'
 
 // 引入组件

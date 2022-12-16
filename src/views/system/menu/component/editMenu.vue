@@ -145,7 +145,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="systemEditMenu">
+<script setup lang="ts" name="example/systemEditMenu">
 import { defineAsyncComponent, reactive, onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useRoutesList } from '/@/stores/routesList'

@@ -51,7 +51,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="pagesListAdapt">
+<script setup lang="ts" name="example/pagesListAdapt">
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { filterList } from './mock'

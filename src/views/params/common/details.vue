@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="paramsCommonDetails">
+<script setup lang="ts" name="example/paramsCommonDetails">
 import { useRoute } from 'vue-router'
 
 // 定义变量内容

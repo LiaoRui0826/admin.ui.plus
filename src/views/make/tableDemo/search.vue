@@ -42,7 +42,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="makeTableDemoSearch">
+<script setup lang="ts" name="example/makeTableDemoSearch">
 import { reactive, ref, onMounted } from 'vue'
 import type { FormInstance } from 'element-plus'
 

@@ -56,7 +56,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="systemRole">
+<script setup lang="ts" name="example/systemRole">
 import { defineAsyncComponent, reactive, onMounted, ref } from 'vue'
 import { ElMessageBox, ElMessage } from 'element-plus'
 

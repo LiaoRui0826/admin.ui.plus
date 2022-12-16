@@ -51,7 +51,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="pagesLazyImg">
+<script setup lang="ts" name="example/pagesLazyImg">
 import { reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import other from '/@/utils/other'

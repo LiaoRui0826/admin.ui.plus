@@ -88,7 +88,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="visualizingLinkDemo1">
+<script setup lang="ts" name="example/visualizingLinkDemo1">
 import { reactive, onMounted, onUnmounted, ref } from 'vue'
 import * as echarts from 'echarts'
 import 'echarts/extension/bmap/bmap'

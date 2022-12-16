@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="menu121">
+<script setup lang="ts" name="example/menu121">
 import { ref } from 'vue'
 
 // 定义变量内容
