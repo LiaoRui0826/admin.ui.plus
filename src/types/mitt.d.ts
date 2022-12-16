@@ -11,6 +11,16 @@
  * @method openShareTagsView 布局设置弹窗，开启 TagsView 共用
  * @method onTagsViewRefreshRouterView tagsview 刷新界面
  * @method onCurrentContextmenuClick tagsview 右键菜单每项点击时
+ 
+ * @method refreshDictType 刷新字典类型
+ * @method refreshDict 刷新字典
+ * @method refreshOrg 刷新部门
+ * @method refreshApi 刷新接口
+ * @method refreshPermission 刷新权限
+ * @method refreshRole 刷新角色
+ * @method refreshTenant 刷新租户
+ * @method refreshUser 刷新用户
+ * @method refreshView 刷新视图
  */
 declare type MittType<T = any> = {
   openSetingsDrawer?: string
@@ -23,6 +33,16 @@ declare type MittType<T = any> = {
   openShareTagsView?: string
   onTagsViewRefreshRouterView?: T
   onCurrentContextmenuClick?: T
+
+  refreshDictType?: string
+  refreshDict?: string
+  refreshOrg?: string
+  refreshApi?: string
+  refreshPermission?: string
+  refreshRole?: string
+  refreshTenant?: string
+  refreshUser?: string
+  refreshView?: string
 }
 
 // mitt 参数类型定义

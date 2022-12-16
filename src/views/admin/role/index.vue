@@ -109,6 +109,7 @@ import SetRoleMenu from './components/set-role-menu.vue'
 import SetRoleDataScope from './components/set-role-data-scope.vue'
 import UserSelect from '/@/views/admin/user/components/user-select.vue'
 import MyDropdownMore from '/@/components/my-dropdown-more/index.vue'
+import eventBus from '/@/utils/mitt'
 
 const { proxy } = getCurrentInstance() as any
 
@@ -135,13 +136,13 @@ const state = reactive({
 
 onMounted(() => {
   onQuery()
-  proxy.eventBus.on('refresh', async () => {
+  eventBus.on('refreshRole', async () => {
     onQuery()
   })
 })
 
 onUnmounted(() => {
-  proxy.eventBus.off('refresh')
+  eventBus.off('refreshRole')
 })
 
 const onQuery = async () => {

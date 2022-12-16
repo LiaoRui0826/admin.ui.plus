@@ -3,36 +3,19 @@
     <el-dialog v-model="state.showDialog" destroy-on-close :title="title" draggable width="769px">
       <el-form ref="formRef" :model="form" size="default" label-width="80px">
         <el-row :gutter="35">
-          <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-            <el-form-item label="企业名称" prop="name" :rules="[{ required: true, message: '请输入企业名称', trigger: ['blur', 'change'] }]">
+          <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+            <el-form-item label="名称" prop="name" :rules="[{ required: true, message: '请输入企业名称', trigger: ['blur', 'change'] }]">
               <el-input v-model="form.name" autocomplete="off" />
             </el-form-item>
           </el-col>
-          <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-            <el-form-item label="企业编码" prop="code" :rules="[{ required: true, message: '请输入企业编码', trigger: ['blur', 'change'] }]">
+          <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+            <el-form-item label="编码" prop="code" :rules="[{ required: true, message: '请输入企业编码', trigger: ['blur', 'change'] }]">
               <el-input v-model="form.code" autocomplete="off" />
             </el-form-item>
           </el-col>
           <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-            <el-form-item label="姓名" prop="realName" :rules="[{ required: true, message: '请输入姓名', trigger: ['blur', 'change'] }]">
-              <el-input v-model="form.realName" autocomplete="off" />
-            </el-form-item>
-          </el-col>
-          <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-            <el-form-item
-              label="手机号"
-              prop="phone"
-              :rules="[
-                { required: true, message: '请输入手机号', trigger: ['blur', 'change'] },
-                { validator: testMobile, trigger: ['blur', 'change'] },
-              ]"
-            >
-              <el-input v-model="form.phone" autocomplete="off" maxlength="11" />
-            </el-form-item>
-          </el-col>
-          <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-            <el-form-item label="邮箱" prop="email" :rules="[{ validator: testEmail, trigger: ['blur', 'change'] }]">
-              <el-input v-model="form.email" autocomplete="off" />
+            <el-form-item label="启用">
+              <el-switch v-model="form.enabled" />
             </el-form-item>
           </el-col>
           <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
@@ -54,9 +37,8 @@
 
 <script lang="ts" setup>
 import { reactive, toRefs, getCurrentInstance, ref } from 'vue'
-import { TenantAddInput, TenantUpdateInput } from '/@/api/admin/data-contracts'
-import { Tenant as TenantApi } from '/@/api/admin/Tenant'
-import { testMobile, testEmail } from '/@/utils/test'
+import { DictionaryAddInput, DictionaryUpdateInput } from '/@/api/admin/data-contracts'
+import { Dictionary as DictionaryApi } from '/@/api/admin/Dictionary'
 import eventBus from '/@/utils/mitt'
 
 defineProps({
@@ -72,22 +54,22 @@ const formRef = ref()
 const state = reactive({
   showDialog: false,
   sureLoading: false,
-  form: {} as TenantAddInput & TenantUpdateInput,
+  form: {} as DictionaryAddInput & DictionaryUpdateInput,
 })
 const { form } = toRefs(state)
 
 // 打开对话框
 const open = async (row: any = {}) => {
   if (row.id > 0) {
-    const res = await new TenantApi().get({ id: row.id }, { loading: true }).catch(() => {
+    const res = await new DictionaryApi().get({ id: row.id }, { loading: true }).catch(() => {
       proxy.$modal.closeLoading()
     })
 
     if (res?.success) {
-      state.form = res.data as TenantAddInput & TenantUpdateInput
+      state.form = res.data as DictionaryAddInput & DictionaryUpdateInput
     }
   } else {
-    state.form = {} as TenantAddInput & TenantUpdateInput
+    state.form = {} as DictionaryAddInput & DictionaryUpdateInput
   }
   state.showDialog = true
 }
@@ -105,18 +87,18 @@ const onSure = () => {
     state.sureLoading = true
     let res = {} as any
     if (state.form.id != undefined && state.form.id > 0) {
-      res = await new TenantApi().update(state.form, { showSuccessMessage: true }).catch(() => {
+      res = await new DictionaryApi().update(state.form, { showSuccessMessage: true }).catch(() => {
         state.sureLoading = false
       })
     } else {
-      res = await new TenantApi().add(state.form, { showSuccessMessage: true }).catch(() => {
+      res = await new DictionaryApi().add(state.form, { showSuccessMessage: true }).catch(() => {
         state.sureLoading = false
       })
     }
     state.sureLoading = false
 
     if (res?.success) {
-      eventBus.emit('refreshTenant')
+      eventBus.emit('refreshDict')
       state.showDialog = false
     }
   })
@@ -131,6 +113,6 @@ defineExpose({
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'admin/tenant/form',
+  name: 'admin/dictionary/form',
 })
 </script>

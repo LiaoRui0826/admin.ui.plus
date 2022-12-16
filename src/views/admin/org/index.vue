@@ -54,6 +54,7 @@ import { OrgListOutput } from '/@/api/admin/data-contracts'
 import { Org as OrgApi } from '/@/api/admin/Org'
 import { listToTree } from '/@/utils/tree'
 import OrgForm from './components/org-form.vue'
+import eventBus from '/@/utils/mitt'
 
 const { proxy } = getCurrentInstance() as any
 
@@ -70,13 +71,13 @@ const state = reactive({
 
 onMounted(() => {
   onQuery()
-  proxy.eventBus.on('refresh', async () => {
+  eventBus.on('refreshOrg', () => {
     onQuery()
   })
 })
 
 onUnmounted(() => {
-  proxy.eventBus.off('refresh')
+  eventBus.off('refreshOrg')
 })
 
 const onQuery = async () => {

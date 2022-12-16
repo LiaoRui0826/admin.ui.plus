@@ -129,6 +129,7 @@ import { Permission as PermissionApi } from '/@/api/admin/Permission'
 import { View as ViewApi } from '/@/api/admin/View'
 import { listToTree } from '/@/utils/tree'
 import MySelectIcon from '/@/components/my-select-icon/index.vue'
+import eventBus from '/@/utils/mitt'
 
 defineProps({
   title: {
@@ -221,7 +222,7 @@ const onSure = () => {
     state.sureLoading = false
 
     if (res?.success) {
-      proxy.eventBus.emit('refresh')
+      eventBus.emit('refreshPermission')
       state.showDialog = false
     }
   })

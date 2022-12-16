@@ -66,9 +66,10 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, toRefs, getCurrentInstance, ref, PropType } from 'vue'
+import { reactive, toRefs, ref, PropType } from 'vue'
 import { ViewListOutput, ViewUpdateInput } from '/@/api/admin/data-contracts'
 import { View as ViewView } from '/@/api/admin/View'
+import eventBus from '/@/utils/mitt'
 
 defineProps({
   title: {
@@ -80,7 +81,6 @@ defineProps({
     default: () => [],
   },
 })
-const { proxy } = getCurrentInstance() as any
 
 const formRef = ref()
 const state = reactive({
@@ -134,7 +134,7 @@ const onSure = () => {
     state.sureLoading = false
 
     if (res?.success) {
-      proxy.eventBus.emit('refresh')
+      eventBus.emit('refreshView')
       state.showDialog = false
     }
   })

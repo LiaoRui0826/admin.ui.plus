@@ -74,6 +74,7 @@ import { User as UserApi } from '/@/api/admin/User'
 import UserForm from './components/user-form.vue'
 import OrgMenu from '/@/views/admin/org/components/org-menu.vue'
 import MyDropdownMore from '/@/components/my-dropdown-more/index.vue'
+import eventBus from '/@/utils/mitt'
 
 const { proxy } = getCurrentInstance() as any
 
@@ -97,13 +98,13 @@ const state = reactive({
 })
 
 onMounted(() => {
-  proxy.eventBus.on('refresh', async () => {
+  eventBus.on('refreshUser', async () => {
     onQuery()
   })
 })
 
 onUnmounted(() => {
-  proxy.eventBus.off('refresh')
+  eventBus.off('refreshUser')
 })
 
 const onQuery = async () => {

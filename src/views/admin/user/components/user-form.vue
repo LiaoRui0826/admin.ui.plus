@@ -109,6 +109,7 @@ import { listToTree, treeToList } from '/@/utils/tree'
 import { cloneDeep } from 'lodash-es'
 import { testMobile, testEmail } from '/@/utils/test'
 import MySelectUser from './my-select-user.vue'
+import eventBus from '/@/utils/mitt'
 
 defineProps({
   title: {
@@ -237,7 +238,7 @@ const onSure = () => {
     state.sureLoading = false
 
     if (res?.success) {
-      proxy.eventBus.emit('refresh')
+      eventBus.emit('refreshUser')
       state.showDialog = false
     }
   })

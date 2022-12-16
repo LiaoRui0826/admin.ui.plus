@@ -91,6 +91,7 @@ import { PermissionListOutput, PermissionUpdateDotInput, ApiListOutput } from '/
 import { Permission as PermissionApi } from '/@/api/admin/Permission'
 import { Api as ApiApi } from '/@/api/admin/Api'
 import { listToTree } from '/@/utils/tree'
+import eventBus from '/@/utils/mitt'
 
 defineProps({
   title: {
@@ -173,7 +174,7 @@ const onSure = () => {
     state.sureLoading = false
 
     if (res?.success) {
-      proxy.eventBus.emit('refresh')
+      eventBus.emit('refreshPermission')
       state.showDialog = false
     }
   })

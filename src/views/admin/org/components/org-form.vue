@@ -62,9 +62,10 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, toRefs, getCurrentInstance, ref, PropType } from 'vue'
+import { reactive, toRefs, ref, PropType } from 'vue'
 import { OrgListOutput, OrgUpdateInput } from '/@/api/admin/data-contracts'
 import { Org as OrgApi } from '/@/api/admin/Org'
+import eventBus from '/@/utils/mitt'
 
 defineProps({
   title: {
@@ -76,8 +77,6 @@ defineProps({
     default: () => [],
   },
 })
-
-const { proxy } = getCurrentInstance() as any
 
 const formRef = ref()
 const state = reactive({
@@ -129,7 +128,7 @@ const onSure = () => {
     state.sureLoading = false
 
     if (res?.success) {
-      proxy.eventBus.emit('refresh')
+      eventBus.emit('refreshOrg')
       state.showDialog = false
     }
   })

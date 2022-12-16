@@ -56,6 +56,7 @@ import { View as ViewView } from '/@/api/admin/View'
 import { listToTree } from '/@/utils/tree'
 import { cloneDeep } from 'lodash-es'
 import ViewForm from './components/view-form.vue'
+import eventBus from '/@/utils/mitt'
 
 const viewFormRef = ref()
 const { proxy } = getCurrentInstance() as any
@@ -72,13 +73,13 @@ const state = reactive({
 
 onMounted(() => {
   onQuery()
-  proxy.eventBus.on('refresh', async () => {
+  eventBus.on('refreshView', async () => {
     onQuery()
   })
 })
 
 onUnmounted(() => {
-  proxy.eventBus.off('refresh')
+  eventBus.off('refreshView')
 })
 
 const onQuery = async () => {

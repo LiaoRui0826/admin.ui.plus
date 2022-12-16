@@ -60,6 +60,7 @@ import { Tenant as TenantApi } from '/@/api/admin/Tenant'
 import TenantForm from './components/tenant-form.vue'
 import MyDropdownMore from '/@/components/my-dropdown-more/index.vue'
 import SetTenantMenu from './components/set-tenant-menu.vue'
+import eventBus from '/@/utils/mitt'
 
 const { proxy } = getCurrentInstance() as any
 
@@ -85,13 +86,13 @@ const state = reactive({
 
 onMounted(() => {
   onQuery()
-  proxy.eventBus.on('refresh', async () => {
+  eventBus.on('refreshTenant', async () => {
     onQuery()
   })
 })
 
 onUnmounted(() => {
-  proxy.eventBus.off('refresh')
+  eventBus.off('refreshTenant')
 })
 
 const onQuery = async () => {

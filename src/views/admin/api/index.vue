@@ -53,6 +53,7 @@ import { Api as ApiApi } from '/@/api/admin/Api'
 import { listToTree } from '/@/utils/tree'
 import ApiForm from './components/api-form.vue'
 import { cloneDeep } from 'lodash-es'
+import eventBus from '/@/utils/mitt'
 
 const { proxy } = getCurrentInstance() as any
 
@@ -70,13 +71,13 @@ const state = reactive({
 
 onMounted(() => {
   onQuery()
-  proxy.eventBus.on('refresh', async () => {
+  eventBus.on('refreshApi', async () => {
     onQuery()
   })
 })
 
 onUnmounted(() => {
-  proxy.eventBus.off('refresh')
+  eventBus.off('refreshApi')
 })
 
 const onQuery = async () => {

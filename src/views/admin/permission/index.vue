@@ -102,6 +102,7 @@ import { cloneDeep } from 'lodash-es'
 import PermissionGroupForm from './components/permission-group-form.vue'
 import PermissionMenuForm from './components/permission-menu-form.vue'
 import PermissionDotForm from './components/permission-dot-form.vue'
+import eventBus from '/@/utils/mitt'
 
 const { proxy } = getCurrentInstance() as any
 
@@ -122,13 +123,13 @@ const state = reactive({
 
 onMounted(() => {
   onQuery()
-  proxy.eventBus.on('refresh', async () => {
+  eventBus.on('refreshPermission', async () => {
     onQuery()
   })
 })
 
 onUnmounted(() => {
-  proxy.eventBus.off('refresh')
+  eventBus.off('refreshPermission')
 })
 
 const onQuery = async () => {
