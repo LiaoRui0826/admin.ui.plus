@@ -12,16 +12,24 @@
   </el-card>
 
   <el-card shadow="never" style="margin-top: 8px">
-    <el-table ref="tableRef" v-loading="state.loading" :data="state.dictionaryTypeListData" row-key="id" highlight-current-row style="width: 100%">
+    <el-table
+      ref="tableRef"
+      v-loading="state.loading"
+      :data="state.dictionaryTypeListData"
+      row-key="id"
+      highlight-current-row
+      style="width: 100%"
+      @current-change="onTableCurrentChange"
+    >
       <el-table-column prop="name" label="名称" min-width="120" show-overflow-tooltip />
-      <el-table-column prop="code" label="编码" width="120" show-overflow-tooltip />
+      <el-table-column prop="code" label="编码" width="80" show-overflow-tooltip />
       <el-table-column label="状态" width="80" align="center" show-overflow-tooltip>
         <template #default="{ row }">
           <el-tag type="success" v-if="row.enabled">启用</el-tag>
           <el-tag type="danger" v-else>禁用</el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="160" fixed="right" header-align="center" align="center">
+      <el-table-column label="操作" width="140" fixed="right" header-align="center" align="center">
         <template #default="{ row }">
           <el-button icon="ele-EditPen" size="small" text type="primary" @click="onEdit(row)">编辑</el-button>
           <el-button icon="ele-Delete" size="small" text type="danger" @click="onDelete(row)">删除</el-button>
@@ -68,26 +76,25 @@ const state = reactive({
   pageInput: {
     currentPage: 1,
     pageSize: 20,
-    filter: {
-      name: null,
-    },
   } as PageInputDictionaryTypeGetPageDto,
   dictionaryTypeListData: [] as Array<DictionaryTypeListOutput>,
 })
 
 onMounted(() => {
   onQuery()
-  eventBus.on('refreshDictType', onQuery)
+  eventBus.on('refreshDictType', () => {
+    onQuery()
+  })
 })
 
 onUnmounted(() => {
-  eventBus.off('refreshDictType', onQuery)
+  eventBus.off('refreshDictType')
 })
 
 const onQuery = async () => {
   state.loading = true
+  state.pageInput.filter = state.filterModel
   const res = await new DictionaryTypeApi().getPage(state.pageInput)
-
   state.dictionaryTypeListData = res?.data?.list ?? []
   state.total = res.data?.total ?? 0
   if (state.dictionaryTypeListData.length > 0) {
@@ -126,6 +133,10 @@ const onSizeChange = (val: number) => {
 const onCurrentChange = (val: number) => {
   state.pageInput.currentPage = val
   onQuery()
+}
+
+const onTableCurrentChange = (currentRow: DictionaryTypeListOutput) => {
+  eventBus.emit('refreshDict', currentRow)
 }
 </script>
 
