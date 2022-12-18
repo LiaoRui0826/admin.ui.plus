@@ -14,3 +14,13 @@
 .el-color-predefine__color-selector {
   border: 1px solid var(--el-border-color);
 }
+
+/* Button 按钮
+------------------------------- */
+.el-button:not(.is-circle) i.el-icon,
+.el-button i.iconfont,
+.el-button i.fa,
+.el-button--default i.iconfont,
+.el-button--default i.fa {
+  margin-right: 0px;
+}

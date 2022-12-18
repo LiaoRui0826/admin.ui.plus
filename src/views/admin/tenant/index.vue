@@ -77,9 +77,6 @@ const state = reactive({
   pageInput: {
     currentPage: 1,
     pageSize: 20,
-    filter: {
-      orgId: null,
-    },
   } as PageInputTenantGetPageDto,
   tenantListData: [] as Array<TenantListOutput>,
 })
