@@ -71,11 +71,15 @@ const state = reactive({
     pageSize: 20,
   } as PageInputDictionaryGetPageDto,
   dictionaryListData: [] as Array<DictionaryListOutput>,
+  dictionaryTypeName: '',
 })
 
 onMounted(() => {
   eventBus.on('refreshDict', (data: DictionaryTypeListOutput) => {
-    state.filterModel.dictionaryTypeId = data.id as number
+    if ((data?.id as number) > 0) {
+      state.filterModel.dictionaryTypeId = data.id as number
+      state.dictionaryTypeName = data.name as string
+    }
     onQuery()
   })
 })
@@ -94,12 +98,12 @@ const onQuery = async () => {
 }
 
 const onAdd = () => {
-  state.dictionaryFormTitle = '新增租户'
-  dictionaryFormRef.value.open()
+  state.dictionaryFormTitle = `新增【${state.dictionaryTypeName}】字典`
+  dictionaryFormRef.value.open({ dictionaryTypeId: state.filterModel.dictionaryTypeId })
 }
 
 const onEdit = (row: DictionaryListOutput) => {
-  state.dictionaryFormTitle = '编辑租户'
+  state.dictionaryFormTitle = `编辑【${state.dictionaryTypeName}】字典`
   dictionaryFormRef.value.open(row)
 }
 

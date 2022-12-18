@@ -106,12 +106,12 @@ const onQuery = async () => {
 }
 
 const onAdd = () => {
-  state.dictionaryTypeFormTitle = '新增租户'
+  state.dictionaryTypeFormTitle = '新增字典分类'
   dictionaryTypeFormRef.value.open()
 }
 
 const onEdit = (row: DictionaryTypeListOutput) => {
-  state.dictionaryTypeFormTitle = '编辑租户'
+  state.dictionaryTypeFormTitle = '编辑字典分类'
   dictionaryTypeFormRef.value.open(row)
 }
 
