@@ -4,7 +4,7 @@
     <span class="my-line-1">{{ themeConfig.globalTitle }}</span>
   </div>
   <div class="layout-logo-size" v-else @click="onThemeConfigChange">
-    <img :src="logoMini" class="layout-logo-size-img" />
+    <img v-if="showLogoMini" :src="logoMini" class="layout-logo-size-img" />
   </div>
 </template>
 
@@ -47,7 +47,7 @@ const onThemeConfigChange = () => {
   color: var(--el-color-primary);
   font-size: 16px;
   cursor: pointer;
-  animation: logoAnimation 0.3s ease-in-out;
+  // animation: logoAnimation 0.3s ease-in-out;
   span {
     white-space: nowrap;
     display: inline-block;
@@ -67,15 +67,15 @@ const onThemeConfigChange = () => {
   height: 50px;
   display: flex;
   cursor: pointer;
-  animation: logoAnimation 0.3s ease-in-out;
+  // animation: logoAnimation 0.3s ease-in-out;
   &-img {
     width: 20px;
     margin: auto;
   }
-  &:hover {
-    img {
-      animation: logoAnimation 0.3s ease-in-out;
-    }
-  }
+  // &:hover {
+  //   img {
+  //     animation: logoAnimation 0.3s ease-in-out;
+  //   }
+  // }
 }
 </style>
