@@ -1,7 +1,7 @@
 <template>
   <div class="layout-logo" v-if="setShowLogo" @click="onThemeConfigChange">
-    <img :src="logoMini" class="layout-logo-medium-img" />
-    <span>{{ themeConfig.globalTitle }}</span>
+    <img v-if="showLogoMini" :src="logoMini" class="layout-logo-medium-img" />
+    <span class="my-line-1">{{ themeConfig.globalTitle }}</span>
   </div>
   <div class="layout-logo-size" v-else @click="onThemeConfigChange">
     <img :src="logoMini" class="layout-logo-size-img" />
@@ -23,6 +23,12 @@ const setShowLogo = computed(() => {
   let { isCollapse, layout } = themeConfig.value
   return !isCollapse || layout === 'classic' || document.body.clientWidth < 1000
 })
+
+const showLogoMini = computed(() => {
+  let { layout } = themeConfig.value
+  return layout !== 'columns'
+})
+
 // logo 点击实现菜单展开/收起
 const onThemeConfigChange = () => {
   if (themeConfig.value.layout === 'transverse') return false

@@ -1,6 +1,9 @@
 <template>
-  <div class="layout-columns-aside">
-    <el-scrollbar>
+  <div class="layout-columns-aside my-flex-column">
+    <div v-if="setShowLogo" class="layout-logo">
+      <img :src="logoMini" class="layout-logo-medium-img" />
+    </div>
+    <el-scrollbar class="my-flex-fill">
       <ul @mouseleave="onColumnsAsideMenuMouseleave()">
         <li
           v-for="(v, k) in state.columnsAsideList"
@@ -45,13 +48,14 @@
 </template>
 
 <script setup lang="ts" name="layoutColumnsAside">
-import { reactive, ref, onMounted, nextTick, watch, onUnmounted } from 'vue'
+import { reactive, ref, onMounted, nextTick, watch, onUnmounted, computed } from 'vue'
 import { useRoute, useRouter, onBeforeRouteUpdate, RouteRecordRaw } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import pinia from '/@/stores/index'
 import { useRoutesList } from '/@/stores/routesList'
 import { useThemeConfig } from '/@/stores/themeConfig'
 import mittBus from '/@/utils/mitt'
+import logoMini from '/@/assets/logo-mini.svg'
 
 // 定义变量内容
 const columnsAsideOffsetTopRefs = ref<RefType>([])
@@ -70,6 +74,12 @@ const state = reactive<ColumnsAsideState>({
   liOldPath: null,
   difference: 0,
   routeSplit: [],
+})
+
+// 设置显示/隐藏 logo
+const setShowLogo = computed(() => {
+  let { layout, isShowLogo } = themeConfig.value
+  return (isShowLogo && layout === 'defaults') || (isShowLogo && layout === 'columns')
 })
 
 // 设置菜单高亮位置移动
@@ -267,6 +277,16 @@ watch(
       width: 100%;
       border-radius: 0;
     }
+  }
+}
+
+.layout-logo {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &-medium-img {
+    width: 20px;
   }
 }
 </style>
