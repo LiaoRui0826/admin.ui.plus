@@ -68,13 +68,15 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive, onMounted, getCurrentInstance, onUnmounted } from 'vue'
+import { ref, reactive, onMounted, getCurrentInstance, onUnmounted, defineAsyncComponent } from 'vue'
 import { UserGetPageOutput, PageInputUserGetPageDto, OrgListOutput, UserSetManagerInput, UserResetPasswordInput } from '/@/api/admin/data-contracts'
 import { User as UserApi } from '/@/api/admin/User'
-import UserForm from './components/user-form.vue'
-import OrgMenu from '/@/views/admin/org/components/org-menu.vue'
-import MyDropdownMore from '/@/components/my-dropdown-more/index.vue'
 import eventBus from '/@/utils/mitt'
+
+// 引入组件
+const UserForm = defineAsyncComponent(() => import('./components/user-form.vue'))
+const OrgMenu = defineAsyncComponent(() => import('/@/views/admin/org/components/org-menu.vue'))
+const MyDropdownMore = defineAsyncComponent(() => import('/@/components/my-dropdown-more/index.vue'))
 
 const { proxy } = getCurrentInstance() as any
 

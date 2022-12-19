@@ -54,13 +54,15 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive, onMounted, getCurrentInstance, onUnmounted } from 'vue'
+import { ref, reactive, onMounted, getCurrentInstance, onUnmounted, defineAsyncComponent } from 'vue'
 import { TenantListOutput, PageInputTenantGetPageDto } from '/@/api/admin/data-contracts'
 import { Tenant as TenantApi } from '/@/api/admin/Tenant'
-import TenantForm from './components/tenant-form.vue'
-import MyDropdownMore from '/@/components/my-dropdown-more/index.vue'
-import SetTenantMenu from './components/set-tenant-menu.vue'
 import eventBus from '/@/utils/mitt'
+
+// 引入组件
+const TenantForm = defineAsyncComponent(() => import('./components/tenant-form.vue'))
+const MyDropdownMore = defineAsyncComponent(() => import('./components/tenant-form.vue'))
+const SetTenantMenu = defineAsyncComponent(() => import('./components/set-tenant-menu.vue'))
 
 const { proxy } = getCurrentInstance() as any
 

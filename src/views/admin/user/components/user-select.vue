@@ -64,11 +64,13 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, defineAsyncComponent } from 'vue'
 import { ElTable } from 'element-plus'
 import { UserGetPageOutput, PageInputUserGetPageDto, OrgListOutput } from '/@/api/admin/data-contracts'
 import { User as UserApi } from '/@/api/admin/User'
-import OrgMenu from '/@/views/admin/org/components/org-menu.vue'
+
+// 引入组件
+const OrgMenu = defineAsyncComponent(() => import('/@/views/admin/org/components/org-menu.vue'))
 
 const props = defineProps({
   title: {

@@ -102,13 +102,15 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, toRefs, getCurrentInstance, ref, PropType } from 'vue'
+import { reactive, toRefs, getCurrentInstance, ref, PropType, defineAsyncComponent } from 'vue'
 import { PermissionListOutput, PermissionUpdateGroupInput, ViewListOutput } from '/@/api/admin/data-contracts'
 import { Permission as PermissionApi } from '/@/api/admin/Permission'
 import { View as ViewApi } from '/@/api/admin/View'
 import { listToTree } from '/@/utils/tree'
-import MySelectIcon from '/@/components/my-select-icon/index.vue'
 import eventBus from '/@/utils/mitt'
+
+// 引入组件
+const MySelectIcon = defineAsyncComponent(() => import('/@/components/my-select-icon/index.vue'))
 
 defineProps({
   title: {

@@ -12,8 +12,11 @@
 </template>
 
 <script lang="ts" setup>
-import DictionaryType from './dictionary-type.vue'
-import Dictionary from './dictionary.vue'
+import { defineAsyncComponent } from 'vue'
+
+// 引入组件
+const DictionaryType = defineAsyncComponent(() => import('./dictionary-type.vue'))
+const Dictionary = defineAsyncComponent(() => import('./dictionary.vue'))
 </script>
 
 <script lang="ts">

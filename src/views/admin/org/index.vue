@@ -49,12 +49,14 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive, onMounted, getCurrentInstance, onUnmounted } from 'vue'
+import { ref, reactive, onMounted, getCurrentInstance, onUnmounted, defineAsyncComponent } from 'vue'
 import { OrgListOutput } from '/@/api/admin/data-contracts'
 import { Org as OrgApi } from '/@/api/admin/Org'
 import { listToTree } from '/@/utils/tree'
-import OrgForm from './components/org-form.vue'
 import eventBus from '/@/utils/mitt'
+
+// 引入组件
+const OrgForm = defineAsyncComponent(() => import('./components/org-form.vue'))
 
 const { proxy } = getCurrentInstance() as any
 

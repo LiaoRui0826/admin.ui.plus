@@ -94,15 +94,17 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive, onMounted, getCurrentInstance, onUnmounted } from 'vue'
+import { ref, reactive, onMounted, getCurrentInstance, onUnmounted, defineAsyncComponent } from 'vue'
 import { PermissionListOutput } from '/@/api/admin/data-contracts'
 import { Permission as PermissionPermission } from '/@/api/admin/Permission'
 import { listToTree } from '/@/utils/tree'
 import { cloneDeep } from 'lodash-es'
-import PermissionGroupForm from './components/permission-group-form.vue'
-import PermissionMenuForm from './components/permission-menu-form.vue'
-import PermissionDotForm from './components/permission-dot-form.vue'
 import eventBus from '/@/utils/mitt'
+
+// 引入组件
+const PermissionGroupForm = defineAsyncComponent(() => import('./components/permission-group-form.vue'))
+const PermissionMenuForm = defineAsyncComponent(() => import('./components/permission-menu-form.vue'))
+const PermissionDotForm = defineAsyncComponent(() => import('./components/permission-dot-form.vue'))
 
 const { proxy } = getCurrentInstance() as any
 

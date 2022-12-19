@@ -70,11 +70,13 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive, onMounted, getCurrentInstance } from 'vue'
+import { ref, reactive, onMounted, getCurrentInstance, defineAsyncComponent } from 'vue'
 import { TaskListOutput, PageInputTaskGetPageDto } from '/@/api/admin/data-contracts'
 import { Task as TaskApi } from '/@/api/admin/Task'
 import dayjs from 'dayjs'
-import TaskLogs from './components/task-logs.vue'
+
+// 引入组件
+const TaskLogs = defineAsyncComponent(() => import('./components/task-logs.vue'))
 
 const { proxy } = getCurrentInstance() as any
 

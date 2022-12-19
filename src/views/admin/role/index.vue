@@ -98,18 +98,20 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive, onMounted, getCurrentInstance, onUnmounted, nextTick } from 'vue'
+import { ref, reactive, onMounted, getCurrentInstance, onUnmounted, nextTick, defineAsyncComponent } from 'vue'
 import { RoleGetListOutput, UserGetRoleUserListOutput, UserGetPageOutput, RoleAddRoleUserListInput, RoleType } from '/@/api/admin/data-contracts'
 import { Role as RoleApi } from '/@/api/admin/Role'
 import { listToTree } from '/@/utils/tree'
 import { ElTable } from 'element-plus'
 import { cloneDeep } from 'lodash-es'
-import RoleForm from './components/role-form.vue'
-import SetRoleMenu from './components/set-role-menu.vue'
-import SetRoleDataScope from './components/set-role-data-scope.vue'
-import UserSelect from '/@/views/admin/user/components/user-select.vue'
-import MyDropdownMore from '/@/components/my-dropdown-more/index.vue'
 import eventBus from '/@/utils/mitt'
+
+// 引入组件
+const RoleForm = defineAsyncComponent(() => import('./components/role-form.vue'))
+const SetRoleMenu = defineAsyncComponent(() => import('./components/set-role-menu.vue'))
+const SetRoleDataScope = defineAsyncComponent(() => import('./components/set-role-data-scope.vue'))
+const UserSelect = defineAsyncComponent(() => import('/@/views/admin/user/components/user-select.vue'))
+const MyDropdownMore = defineAsyncComponent(() => import('/@/components/my-dropdown-more/index.vue'))
 
 const { proxy } = getCurrentInstance() as any
 

@@ -16,9 +16,11 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive, PropType } from 'vue'
+import { ref, reactive, PropType, defineAsyncComponent } from 'vue'
 import { UserGetPageOutput } from '/@/api/admin/data-contracts'
-import UserSelect from './user-select.vue'
+
+// 引入组件
+const UserSelect = defineAsyncComponent(() => import('./user-select.vue'))
 
 const props = defineProps({
   name: String as PropType<string | undefined | null>,

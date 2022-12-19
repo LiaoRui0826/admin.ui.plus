@@ -50,13 +50,15 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive, onMounted, getCurrentInstance, onUnmounted } from 'vue'
+import { ref, reactive, onMounted, getCurrentInstance, onUnmounted, defineAsyncComponent } from 'vue'
 import { ViewListOutput } from '/@/api/admin/data-contracts'
 import { View as ViewView } from '/@/api/admin/View'
 import { listToTree } from '/@/utils/tree'
 import { cloneDeep } from 'lodash-es'
-import ViewForm from './components/view-form.vue'
 import eventBus from '/@/utils/mitt'
+
+// 引入组件
+const ViewForm = defineAsyncComponent(() => import('./components/view-form.vue'))
 
 const viewFormRef = ref()
 const { proxy } = getCurrentInstance() as any

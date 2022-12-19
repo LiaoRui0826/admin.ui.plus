@@ -136,7 +136,7 @@
 </template>
 
 <script setup lang="ts" name="personal">
-import { reactive, computed, onMounted, toRefs, ref, getCurrentInstance } from 'vue'
+import { reactive, computed, onMounted, toRefs, ref, getCurrentInstance, defineAsyncComponent } from 'vue'
 import { formatAxis } from '/@/utils/formatTime'
 import { User as UserApi } from '/@/api/admin/User'
 import { UserGetBasicOutput } from '/@/api/admin/data-contracts'
@@ -145,7 +145,9 @@ import pinia from '/@/stores/index'
 import { storeToRefs } from 'pinia'
 import { getToken } from '/@/api/admin/http-client'
 import { AxiosResponse } from 'axios'
-import ChangePasswordForm from './components/change-password-form.vue'
+
+// 引入组件
+const ChangePasswordForm = defineAsyncComponent(() => import('./components/change-password-form.vue'))
 
 const { proxy } = getCurrentInstance() as any
 

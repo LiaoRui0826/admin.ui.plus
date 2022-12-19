@@ -48,11 +48,13 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive, onMounted, getCurrentInstance, onUnmounted } from 'vue'
+import { ref, reactive, onMounted, getCurrentInstance, onUnmounted, defineAsyncComponent } from 'vue'
 import { DictionaryListOutput, PageInputDictionaryGetPageDto, DictionaryTypeListOutput } from '/@/api/admin/data-contracts'
 import { Dictionary as DictionaryApi } from '/@/api/admin/Dictionary'
-import DictionaryForm from './components/dictionary-form.vue'
 import eventBus from '/@/utils/mitt'
+
+// 引入组件
+const DictionaryForm = defineAsyncComponent(() => import('./components/dictionary-form.vue'))
 
 const { proxy } = getCurrentInstance() as any
 

@@ -47,13 +47,15 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive, onMounted, getCurrentInstance, onUnmounted } from 'vue'
+import { ref, reactive, onMounted, getCurrentInstance, onUnmounted, defineAsyncComponent } from 'vue'
 import { ApiListOutput } from '/@/api/admin/data-contracts'
 import { Api as ApiApi } from '/@/api/admin/Api'
 import { listToTree } from '/@/utils/tree'
-import ApiForm from './components/api-form.vue'
 import { cloneDeep } from 'lodash-es'
 import eventBus from '/@/utils/mitt'
+
+// 引入组件
+const ApiForm = defineAsyncComponent(() => import('./components/api-form.vue'))
 
 const { proxy } = getCurrentInstance() as any
 
