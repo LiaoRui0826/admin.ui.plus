@@ -86,6 +86,7 @@
               v-model="getThemeConfig.menuBarActiveColor"
               size="default"
               show-alpha
+              :predefine="predefineActiveBgColors"
               @change="onBgColorPickerChange('menuBarActiveColor')"
             />
           </div>
@@ -484,6 +485,14 @@ const predefinePrimaryColors = ref([
 const predefineBgColors = ref([
   '#ffffff', //白色
   '#282c34', //黑色
+])
+// 预定义高亮背景颜色
+const predefineActiveBgColors = ref([
+  'rgba(0, 0, 0, 0.2)', //灰黑色
+  'rgba(253, 237, 235, 1)', //浅红色
+  'rgba(235, 245, 255, 1)', //浅蓝色
+  'rgba(240, 237, 253, 1)', //浅紫色
+  'rgba(236, 247, 242, 1)', //浅绿色
 ])
 // 预定义字体颜色
 const predefineFontColors = ref([
