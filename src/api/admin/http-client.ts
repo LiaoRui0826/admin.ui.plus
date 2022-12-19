@@ -54,6 +54,7 @@ export interface FullRequestParams extends Omit<AxiosRequestConfig, 'data' | 'pa
   login?: boolean
   /** 加载中 */
   loading?: boolean
+  /** 加载中选项 */
   loadingOptions?: LoadingOptions
   /** 取消重复请求 */
   cancelRepeatRequest?: boolean
